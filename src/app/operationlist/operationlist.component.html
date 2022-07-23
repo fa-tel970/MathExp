@@ -1,0 +1,19 @@
+<ul>
+  <li *ngFor="let number of numbers">
+    <i
+      *ngIf="
+        (number.action === 'add' && failedAdd) ||
+          (number.action === 'multiply' && failedMultiply);
+        else showExpression
+      "
+      >&lt;MISSING DATA&gt;</i
+    >
+    <ng-template #showExpression>
+      <i>
+        {{ number.value }} {{ number.action === "add" ? "+" : "*" }}
+        {{ getValue(number.action) }} =
+        {{ getResult(number.value, number.action) }}
+      </i>
+    </ng-template>
+  </li>
+</ul>
